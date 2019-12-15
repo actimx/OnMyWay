@@ -11,23 +11,43 @@ import { Block, Checkbox, Text, theme } from "galio-framework";
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import * as Google from 'expo-google-app-auth';
+import { saveItem } from '../utils/storage';
+import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE } from '../constants/';
+import enviroment from '../../enviroment';
+
+const {
+  iosClientId,
+  androidClientId,
+  iosStandaloneAppClientId,
+  androidStandaloneAppClientId
+} = enviroment();
 
 const { width, height } = Dimensions.get("screen");
 
 const handleLoginPress = async () => {
-  const result = await Google.logInAsync(
-    {
-      iosClientId: '642684421563-mkgahgluj9dmi968aar8igmmo4f5eiq1.apps.googleusercontent.com',
-      androidClientId: '642684421563-0grul2p1r0ndjrilmum1rhrg5hlqumtb.apps.googleusercontent.com',
-      iosStandaloneAppClientId: '642684421563-mkgahgluj9dmi968aar8igmmo4f5eiq1.apps.googleusercontent.com',
-      androidStandaloneAppClientId: '642684421563-0grul2p1r0ndjrilmum1rhrg5hlqumtb.apps.googleusercontent.com'
+  try {
+    const { user, accessToken, type } = await Google.logInAsync(
+      {
+        iosClientId,
+        androidClientId,
+        iosStandaloneAppClientId,
+        androidStandaloneAppClientId
+      }
+    );
+
+    if (type === GOOGLE_SUCCESS_MESSAGE) {
+      const userResult = await saveItem(USER_INFO, JSON.stringify(user));
+      //si guarda correctamente saveItem retorna un null
+      const tokenResult = await saveItem(ACCESS_TOKEN, accessToken);
+      alert(user.name);
     }
-  );
-  alert("Hola! soy : " + result.user.name + " y que");
+  } catch (e) {
+    alert('Error: ' + e);
+  }
+
 }
 
 class Register extends React.Component {
-
 
   render() {
     return (
