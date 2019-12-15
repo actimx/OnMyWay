@@ -23,7 +23,7 @@ const handleLoginPress = async () => {
       androidStandaloneAppClientId: '642684421563-0grul2p1r0ndjrilmum1rhrg5hlqumtb.apps.googleusercontent.com'
     }
   );
-  alert("Hola! soy : " + result.user.name + " y me gustan los hombres desnudos:3");
+  alert("Hola! soy : " + result.user.name + " y que");
 }
 
 class Register extends React.Component {

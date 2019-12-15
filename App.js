@@ -4,8 +4,8 @@ import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import { Block, GalioProvider } from 'galio-framework';
 
-import Screens from './navigation/Screens';
-import { Images, articles, argonTheme } from './constants';
+import Screens from './src/navigation/Screens';
+import { Images, articles, argonTheme } from './src/constants';
 
 // cache app images
 const assetImages = [
@@ -35,9 +35,9 @@ export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
   }
-  
+
   render() {
-    if(!this.state.isLoadingComplete) {
+    if (!this.state.isLoadingComplete) {
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
