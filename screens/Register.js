@@ -10,10 +10,25 @@ import { Block, Checkbox, Text, theme } from "galio-framework";
 
 import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
+import * as Google from 'expo-google-app-auth';
 
 const { width, height } = Dimensions.get("screen");
 
+const handleLoginPress = async () => {
+  const result = await Google.logInAsync(
+    {
+      iosClientId: '642684421563-mkgahgluj9dmi968aar8igmmo4f5eiq1.apps.googleusercontent.com',
+      androidClientId: '642684421563-0grul2p1r0ndjrilmum1rhrg5hlqumtb.apps.googleusercontent.com',
+      iosStandaloneAppClientId: '642684421563-mkgahgluj9dmi968aar8igmmo4f5eiq1.apps.googleusercontent.com',
+      androidStandaloneAppClientId: '642684421563-0grul2p1r0ndjrilmum1rhrg5hlqumtb.apps.googleusercontent.com'
+    }
+  );
+  alert("Hola! soy : " + result.user.name + " y me gustan los hombres desnudos:3");
+}
+
 class Register extends React.Component {
+
+
   render() {
     return (
       <Block flex middle>
@@ -41,7 +56,7 @@ class Register extends React.Component {
                       <Text style={styles.socialTextButtons}>GITHUB</Text>
                     </Block>
                   </Button>
-                  <Button style={styles.socialButtons}>
+                  <Button style={styles.socialButtons} onPress={handleLoginPress}>
                     <Block row>
                       <Icon
                         name="logo-google"
