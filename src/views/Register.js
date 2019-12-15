@@ -12,7 +12,7 @@ import { Button, Icon, Input } from "../components";
 import { Images, argonTheme } from "../constants";
 import * as Google from 'expo-google-app-auth';
 import { saveItem } from '../utils/storage';
-import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE } from '../constants/';
+import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE } from '../constants';
 import enviroment from '../../enviroment';
 
 const {
@@ -39,7 +39,7 @@ const handleLoginPress = async () => {
       const userResult = await saveItem(USER_INFO, JSON.stringify(user));
       //si guarda correctamente saveItem retorna un null
       const tokenResult = await saveItem(ACCESS_TOKEN, accessToken);
-      alert(user.name);
+      alert(user.name + " XD");
     }
   } catch (e) {
     alert('Error: ' + e);
