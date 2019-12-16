@@ -9,13 +9,13 @@ import {
 import { Block } from "galio-framework";
 
 // screens
-import Home from "../views/Home";
-import Onboarding from "../views/Onboarding";
-import Pro from "../views/Pro";
-import Profile from "../views/Profile";
-import Register from "../views/Register";
-import Elements from "../views/Elements";
-import Articles from "../views/Articles";
+import Home from "../views/Home/index";
+import Onboarding from "../views/Onboarding/index";
+import Pro from "../views/Pro/index";
+import Profile from "../views/Profile/index";
+import Register from "../views/Register/index";
+import Elements from "../views/Elements/index";
+import Articles from "../views/Articles/index";
 // drawer
 import Menu from "./Menu";
 import DrawerItem from "../components/DrawerItem";

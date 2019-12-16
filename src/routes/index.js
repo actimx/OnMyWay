@@ -21,13 +21,13 @@ import Profile from '../views/Profile';
 import Register from '../views/Register';
 
 const AppNavigator = createStackNavigator({
+    [PRO]: Pro,
     [REGISTER]: Register,
     [HOME]: Home,
     [ARTICLES]: Articles,
     [ELEMENTS]: Elements,
     [PROFILE]: Profile,
-    [ONBOARDING]: Onboarding,
-    [PRO]: Pro
+    [ONBOARDING]: Onboarding
 });
 
 export default createAppContainer(AppNavigator);

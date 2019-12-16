@@ -3,13 +3,12 @@ import { ImageBackground, Image, StyleSheet, StatusBar, Dimensions, Platform } f
 import { Block, Button, Text, theme } from 'galio-framework';
 
 const { height, width } = Dimensions.get('screen');
-import { Images, argonTheme } from '../constants/';
-import { HeaderHeight } from "../constants/utils";
+import { Images, argonTheme } from '../../constants';
+import { HeaderHeight } from "../../constants/utils";
 
 export default class Pro extends React.Component {
   render() {
     const { navigation } = this.props;
-
     return (
       <Block flex style={styles.container}>
         <StatusBar barStyle="light-content" />
@@ -22,7 +21,7 @@ export default class Pro extends React.Component {
             <Block>
               <Block>
                 <Image source={Images.ArgonLogo}
-                  style={{ marginBottom: theme.SIZES.BASE * 1.5 }}/>
+                  style={{ marginBottom: theme.SIZES.BASE * 1.5 }} />
               </Block>
               <Block >
                 <Block>

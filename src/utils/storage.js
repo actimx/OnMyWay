@@ -2,7 +2,8 @@ import { AsyncStorage } from 'react-native';
 
 export const saveItem = async (keyName, keyValue) => {
     try {
-        return await AsyncStorage.setItem(keyName, keyValue);
+        await AsyncStorage.setItem(keyName, keyValue);
+        return true;
     } catch (e) {
         return false;
     }
@@ -18,7 +19,8 @@ export const getItem = async (keyName) => {
 
 export const clearAll = async () => {
     try {
-        return await AsyncStorage.clear();
+        await AsyncStorage.clear();
+        return true;
     } catch (e) {
         return false;
     }
