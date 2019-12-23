@@ -24,6 +24,9 @@ const AppNavigator = createStackNavigator({
     [HOME]: Home,
     [RESULTS]: Results,
     [PROFILE]: Profile
+}, {
+    // Esconder el header de react navigation
+    headerMode: 'none'
 });
 
 export default createAppContainer(AppNavigator);
