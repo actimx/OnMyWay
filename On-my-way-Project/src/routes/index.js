@@ -1,7 +1,15 @@
 
-
+import React from "react";
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from "react-navigation-stack";
+
+import { 
+    LOADING_PAGE,
+    LOGIN,
+    HOME,
+    RESULTS,
+    PROFILE
+ } from "../consts";
 
 import Login from "../views/Login";
 import Home from "../views/Home";
@@ -11,11 +19,11 @@ import Profile from "../views/Profile";
 
 // crear stackNavigator
 const AppNavigator = createStackNavigator({
-    'LoadingPage': LoadingPage,
-    'Login': Login,
-    'Home': Home,
-    'Results': Results,
-    'Profile': Profile
+    [LOADING_PAGE]: LoadingPage,
+    [LOGIN]: Login,
+    [HOME]: Home,
+    [RESULTS]: Results,
+    [PROFILE]: Profile
 });
 
 export default createAppContainer(AppNavigator);
