@@ -11,8 +11,8 @@ export const saveItem = async (keyName, keyValue) => {
 
 export const getItem = async (keyName) => {
     try {
-        await AsyncStorage.getItem(keyName);
-        return true;
+        
+        return await AsyncStorage.getItem(keyName);
     } catch (error) {
         return false;
     }
