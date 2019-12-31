@@ -1,4 +1,34 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Container, Content } from "native-base";
 
-export default () => (<View><Text>Home</Text></View>);
+import MyHeader from "../../components/Header";
+import { USER_INFO } from "../../consts";
+import { getItem } from "../../utils/storage";
+
+export default function Home () {
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(
+        () => {
+            if (!userInfo) {
+                loadUserInfo();
+
+            }
+        }, 
+            [userInfo]
+    );
+
+    const loadUserInfo = async () => {
+        let userInfo = await getItem(USER_INFO);
+        userInfo = JSON.parse(userInfo);
+        console.log(userInfo);
+        
+        setUserInfo(userInfo);
+    };
+
+    return (
+        <Container>
+            <MyHeader imageUri={userInfo && userInfo.photoUrl} />
+        </Container>
+    );
+}
