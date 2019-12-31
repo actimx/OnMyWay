@@ -28,7 +28,7 @@ export default function Home () {
 
     return (
         <Container>
-            <MyHeader imageUri={userInfo && userInfo.photoUrl} />
+            <MyHeader imageUri={userInfo && userInfo.photoUrl}/>
         </Container>
     );
 }
