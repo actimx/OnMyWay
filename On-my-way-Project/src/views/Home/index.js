@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Container, Content } from "native-base";
 
 import MyHeader from "../../components/Header";
+import MyFooter from "../../components/Footer";
 import { USER_INFO } from "../../consts";
 import { getItem } from "../../utils/storage";
+
+import styles from './style';
 
 export default function Home () {
     const [userInfo, setUserInfo] = useState(null);
@@ -29,6 +32,8 @@ export default function Home () {
     return (
         <Container>
             <MyHeader imageUri={userInfo && userInfo.photoUrl}/>
+            <Content />
+            <MyFooter/>
         </Container>
     );
 }
