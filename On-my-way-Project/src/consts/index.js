@@ -17,6 +17,6 @@ export const USER_INFO = '@user-info';
 export const GOOGLE_SUCCESS_MESSAGE = 'success';
 
 // Colors
-export const PRIMARY = '#f0932b';
-export const PRIMARY_DARK = '#4834d4';
-export const SECONDARY = '#4834d4';
+export const PRIMARY = '#74b9ff';
+export const PRIMARY_DARK = '#0984e3';
+export const SECONDARY = '#fdcb6e';

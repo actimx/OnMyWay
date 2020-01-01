@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Content } from "native-base";
+import { BackHandler } from "react-native";
 
 import MyHeader from "../../components/Header";
 import MyFooter from "../../components/Footer";
@@ -9,6 +10,16 @@ import { getItem } from "../../utils/storage";
 import styles from './style';
 
 export default function Home () {
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', handleHardwarePress);
+
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress');
+        };
+    });
+
+    const handleHardwarePress = () => true;
+
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(

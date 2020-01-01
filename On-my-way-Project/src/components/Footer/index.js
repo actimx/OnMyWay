@@ -1,15 +1,16 @@
 import React from "react";
-import { Container, Footer, FooterTab, Button, Text, Icon } from "native-base";
+import { Footer, FooterTab, Button, Text, Icon } from "native-base";
 
-import { WHITE, SECONDARY } from "../../consts";
+import { WHITE, PRIMARY_DARK } from "../../consts";
 
 import styles from './style';
 
-export default function MyFooter() {
+export default function MyFooter({ navigation }) {
+
     return (
             <Footer>
                 <FooterTab style={styles.footer}>
-                <Button vertical active style={{ backgroundColor: SECONDARY }}>
+                <Button vertical active style={{ backgroundColor: PRIMARY_DARK }}>
                     <Icon name="apps" style={{ color: WHITE }}/>
                     <Text style={{ color: WHITE }}>Home</Text>
                 </Button>
