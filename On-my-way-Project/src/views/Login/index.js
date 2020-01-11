@@ -3,10 +3,12 @@ import { Image } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 import { Container, Footer, FooterTab, Content, Grid, Form, Input, Label, Item, Icon, Button, Text, Body  } from 'native-base';
 
+import Expo from "expo";
+
 import style from './style';
 import enviroment from "../../../enviroment";
 import { saveItem } from "../../utils/storage";
-import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE, HOME, SIGNIN } from "../../consts";
+import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE, HOME, IDENTIFICADOR_APP_FACEBOOK, REGISTER } from "../../consts";
 
 const GOOGLE_IMAGE = require('../../../assets/google-icon.png');
 const FACEBOOK_IMAGE = require('../../../assets/facebook-icon.png');
@@ -44,6 +46,41 @@ export default function Login({navigation}) {
             alert('Error: ' + error);
         }
     };
+    const handleRegisterPress =  () => {
+        // console.log("entro");
+        // alert(10);
+        navigation.navigate(REGISTER);
+    };
+    // Facebook sign in
+    const handleLoginFacebookPress = async () => {
+        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(IDENTIFICADOR_APP_FACEBOOK, 
+            { permissions: ['public_profile'] });
+
+            if (type === 'success') {
+                const credential = fireba
+            }
+        // try {
+        //   await Facebook.initializeAsync('451236342210992');
+        //   const {
+        //     type,
+        //     token,
+        //     expires,
+        //     permissions,
+        //     declinedPermissions,
+        //   } = await Facebook.logInWithReadPermissionsAsync({
+        //     permissions: ['public_profile'],
+        //   });
+        //   if (type === 'success') {
+        //     // Get the user's name using Facebook's Graph API
+        //     const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+        //     Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
+        //   } else {
+        //     // type === 'cancel'
+        //   }
+        // } catch ({ message }) {
+        //   alert(`Facebook Login Error: ${message}`);
+        // }
+      };
     return (
         <Container>
             <Content contentContainerStyle={style.content}>
@@ -61,7 +98,6 @@ export default function Login({navigation}) {
                         <Input placeholder='Password' secureTextEntry={true}/>
                     </Item>
                     <Button style={style.loginBtn} light>
-                        {/* <Image source={SUCCES_ICON} style={style.googleIcon}/> */}
                         <Text>LOG IN</Text>
                     </Button>
                     <Text style={{ fontSize:12, color: 'blue', textDecorationLine: 'underline', marginTop:15 }}>Did you forget your password?</Text> 
@@ -74,8 +110,10 @@ export default function Login({navigation}) {
                         >
                         <Image source={GOOGLE_IMAGE} style={style.googleIcon}/>
                     </Button>
-                    <Button style={style.facebookBtn} light>
-                        <Image source={FACEBOOK_IMAGE} style={style.googleIcon}/>
+                    <Button style={style.facebookBtn} light
+                        onPress={handleLoginFacebookPress}
+                        >
+                         <Image source={FACEBOOK_IMAGE} style={style.googleIcon}/>
                     </Button>
                </Grid>
                     
@@ -83,9 +121,7 @@ export default function Login({navigation}) {
             <Footer>
                 <FooterTab>
                     <Button full 
-                        onPress={() => {
-                            navigation.navigate(SIGNIN);
-                        }}>
+                        onPress={handleRegisterPress}>
                     <Text>Sign in</Text>
                     </Button>
                 </FooterTab>

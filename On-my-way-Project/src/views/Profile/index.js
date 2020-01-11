@@ -33,7 +33,8 @@ export default function Profile({ navigation }) {
     };
 
     if (!userInfo) {
-        return (<Spinner color={SECONDARY}/>);
+    //    return (console.log("error :c"));
+        return (<Spinner style={styles.returnSpinner} color={'red'}/>);
     }
 
     return (
