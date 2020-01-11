@@ -6,6 +6,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { 
     LOADING_PAGE,
     LOGIN,
+    REGISTER,
     HOME,
     RESULTS,
     PROFILE,
@@ -20,11 +21,13 @@ import Results from "../views/Results";
 import Profile from "../views/Profile";
 import Groups from "../views/Groups";
 import CreateGroup from "../views/Groups/CreateGroup";
+import Register from "../views/Register";
 
 // crear stackNavigator
 const AppNavigator = createStackNavigator({
     [LOADING_PAGE]: LoadingPage,
     [LOGIN]: Login,
+    [REGISTER]: Register,
     [HOME]: Home,
     [RESULTS]: Results,
     [PROFILE]: Profile,
