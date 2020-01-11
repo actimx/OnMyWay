@@ -9,7 +9,9 @@ import {
     REGISTER,
     HOME,
     RESULTS,
-    PROFILE
+    PROFILE,
+    GROUPS,
+    CREATE_GROUP
  } from "../consts";
 
 import Login from "../views/Login";
@@ -17,6 +19,8 @@ import Home from "../views/Home";
 import LoadingPage from "../views/LoadingPage";
 import Results from "../views/Results";
 import Profile from "../views/Profile";
+import Groups from "../views/Groups";
+import CreateGroup from "../views/Groups/CreateGroup";
 import Register from "../views/Register";
 
 // crear stackNavigator
@@ -26,7 +30,9 @@ const AppNavigator = createStackNavigator({
     [REGISTER]: Register,
     [HOME]: Home,
     [RESULTS]: Results,
-    [PROFILE]: Profile
+    [PROFILE]: Profile,
+    [GROUPS]: Groups,
+    [CREATE_GROUP]: CreateGroup
 }, {
     // Esconder el header de react navigation
     headerMode: 'none'

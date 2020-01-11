@@ -1,11 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Footer, FooterTab, Button, Text, Icon } from "native-base";
+import { withNavigation } from "react-navigation";
 
-import { WHITE, PRIMARY_DARK } from "../../consts";
+import { WHITE, PRIMARY_DARK, GROUPS } from "../../consts";
 
 import styles from './style';
 
-export default function MyFooter({ navigation }) {
+export function MyFooter({ navigation }) {
+
+    const handleGroupsPress = () => {
+        //useEffect( () => {
+            navigation.navigate(GROUPS);
+        //});
+    }
 
     return (
             <Footer>
@@ -18,9 +25,9 @@ export default function MyFooter({ navigation }) {
                     <Icon name="navigate" style={{ color: WHITE }}/>
                     <Text style={{ color: WHITE }}>Navigate</Text>
                 </Button>
-                <Button vertical>
+                <Button vertical onPress={handleGroupsPress}>
                     <Icon name="person" style={{ color: WHITE }}/>
-                    <Text style={{ color: WHITE }}>Contact</Text>
+                    <Text style={{ color: WHITE }}>Groups</Text>
                 </Button>
                 <Button vertical>
                     <Icon name="ios-notifications" style={{ color: WHITE }}/>
@@ -39,3 +46,5 @@ export default function MyFooter({ navigation }) {
         // </Header>
     );
 }
+
+export default withNavigation(MyFooter);
