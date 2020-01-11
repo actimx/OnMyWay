@@ -5,6 +5,10 @@ export const HOME = 'Home';
 export const RESULTS = 'Results';
 export const PROFILE = 'Profile';
 
+// Routes Groups
+export const GROUPS = 'Groups';
+export const CREATE_GROUP = 'Create Group';
+
 // Fonts
 export const ROBOTO_FONT = 'Roboto';
 export const ROBOTO_MEDIUM_FONT = 'Roboto_medium';
