@@ -1,7 +1,7 @@
 import React from "react";
 import { Image } from 'react-native';
 import * as Google from 'expo-google-app-auth';
-import { Container, Footer, FooterTab, Content, Grid, Form, Input, Label, Item, Icon, Button, Text, Body  } from 'native-base';
+import { Container, Footer, FooterTab, Content, Grid, Form, Input, Label, Item, Icon, Button, Text, Body } from 'native-base';
 
 import Expo from "expo";
 
@@ -21,7 +21,45 @@ const {
     androidStandaloneAppClientId
 } = enviroment();
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
+
+    const [email, onChangeEmail] = React.useState('ejemplo@ejemplo.com');
+    const [password, onChangePassword] = React.useState('12345678');
+
+    login = async () => {
+
+        try {
+            let response = await fetch(
+                `https://onmyway69.herokuapp.com/api/auth/login?username=${email}&password=${password}`, {
+                method: 'POST'
+            });
+
+            let responseJson = await response.json();
+            if (responseJson.access_token) {
+                let access_token = responseJson.access_token;
+                let user = {
+                    email: email,
+                    name: "ejemplo" //Falta que la peticion me traiga el nombre del usuario logueado
+                }
+
+                const userResult = await saveItem(USER_INFO, JSON.stringify(user));
+                const tokenResult = await saveItem(ACCESS_TOKEN, access_token);
+
+                if (userResult && tokenResult) {
+                    navigation.navigate(HOME);
+                } else {
+                    alert('Error al iniciar sesión');
+                }
+            } else {
+                alert(responseJson);
+                return false;
+            }
+            return responseJson;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
 
     const handleLoginPress = async () => {
         try {
@@ -31,7 +69,7 @@ export default function Login({navigation}) {
                 iosStandaloneAppClientId,
                 androidStandaloneAppClientId
             });
-    
+
             if (type === GOOGLE_SUCCESS_MESSAGE) {
                 const userResult = await saveItem(USER_INFO, JSON.stringify(user));
                 const tokenResult = await saveItem(ACCESS_TOKEN, accessToken);
@@ -41,24 +79,24 @@ export default function Login({navigation}) {
                 } else {
                     alert('Error al iniciar sesión');
                 }
-            } 
+            }
         } catch (error) {
             alert('Error: ' + error);
         }
     };
-    const handleRegisterPress =  () => {
+    const handleRegisterPress = () => {
         // console.log("entro");
         // alert(10);
         navigation.navigate(REGISTER);
     };
     // Facebook sign in
     const handleLoginFacebookPress = async () => {
-        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(IDENTIFICADOR_APP_FACEBOOK, 
+        const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(IDENTIFICADOR_APP_FACEBOOK,
             { permissions: ['public_profile'] });
 
-            if (type === 'success') {
-                const credential = fireba
-            }
+        if (type === 'success') {
+            const credential = fireba
+        }
         // try {
         //   await Facebook.initializeAsync('451236342210992');
         //   const {
@@ -80,7 +118,7 @@ export default function Login({navigation}) {
         // } catch ({ message }) {
         //   alert(`Facebook Login Error: ${message}`);
         // }
-      };
+    };
     return (
         <Container>
             <Content contentContainerStyle={style.content}>
@@ -88,41 +126,45 @@ export default function Login({navigation}) {
                     {/* <Text style={style.title}>Welcome to</Text> */}
                     <Image source={LOGO_OFICIAL} />
                     <Text style={style.subtitle}>Login to continue</Text>
-                    
+
                     <Item style={style.itemInput}>
                         <Icon active name='person' />
-                        <Input placeholder='E-mail'/>
+                        <Input placeholder='E-mail' onChangeText={(email) => onChangeEmail(email)}
+                            value={email} />
                     </Item>
                     <Item style={style.itemInput}>
                         <Icon active name='key' />
-                        <Input placeholder='Password' secureTextEntry={true}/>
+                        <Input placeholder='Password' onChangeText={(password) => onChangePassword(password)}
+                            value={password}
+                            secureTextEntry={true} />
                     </Item>
-                    <Button style={style.loginBtn} light>
+                    <Button style={style.loginBtn} light
+                        onPress={login}>
                         <Text>LOG IN</Text>
                     </Button>
-                    <Text style={{ fontSize:12, color: 'blue', textDecorationLine: 'underline', marginTop:15 }}>Did you forget your password?</Text> 
-                    <Item style={{ marginTop:20 }}>
+                    <Text style={{ fontSize: 12, color: 'blue', textDecorationLine: 'underline', marginTop: 15 }}>Did you forget your password?</Text>
+                    <Item style={{ marginTop: 20 }}>
                         <Text >Login with</Text>
                     </Item>
 
                     <Button style={style.googleBtn} light
                         onPress={handleLoginPress}
-                        >
-                        <Image source={GOOGLE_IMAGE} style={style.googleIcon}/>
+                    >
+                        <Image source={GOOGLE_IMAGE} style={style.googleIcon} />
                     </Button>
                     <Button style={style.facebookBtn} light
                         onPress={handleLoginFacebookPress}
-                        >
-                         <Image source={FACEBOOK_IMAGE} style={style.googleIcon}/>
+                    >
+                        <Image source={FACEBOOK_IMAGE} style={style.googleIcon} />
                     </Button>
-               </Grid>
-                    
+                </Grid>
+
             </Content>
             <Footer>
                 <FooterTab>
-                    <Button full 
+                    <Button full
                         onPress={handleRegisterPress}>
-                    <Text>Sign in</Text>
+                        <Text>Sign in</Text>
                     </Button>
                 </FooterTab>
             </Footer>

@@ -3,7 +3,7 @@
     "name": "On my way",
     "slug": "On-my-way-Project",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android",
@@ -27,7 +27,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.alexcompany.udemyapp"
     },
-    "android":{
+    "android": {
       "package": "com.alexcompany.udemyapp"
     }
   }
