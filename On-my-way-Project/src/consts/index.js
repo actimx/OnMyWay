@@ -8,7 +8,8 @@ export const PROFILE = 'Profile';
 
 // Routes Groups
 export const GROUPS = 'Groups';
-export const CREATE_GROUP = 'Create Group';
+export const CREATE_GROUP = 'CreateGroup';
+export const SEARCH_GROUP = 'SearchGroup'
 
 // Fonts
 export const ROBOTO_FONT = 'Roboto';

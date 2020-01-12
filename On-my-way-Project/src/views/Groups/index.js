@@ -13,8 +13,9 @@ import {
     Icon, 
     Text, 
     Title,
+    Subtitle,
     View} from "native-base";
-import { CREATE_GROUP } from "../../consts";
+import { CREATE_GROUP, SEARCH_GROUP } from "../../consts";
 import styles from "./style";
 
 export default function Groups({ navigation }) {
@@ -27,6 +28,10 @@ export default function Groups({ navigation }) {
         navigation.navigate(CREATE_GROUP);
     }
 
+    const hanhleSearchGroupPress = () => {
+        navigation.navigate(SEARCH_GROUP);
+    }
+
     return (
         <Container>
             <Header style={styles.header}>
@@ -37,9 +42,10 @@ export default function Groups({ navigation }) {
                 </Left>
                 <Body>
                     <Title>Groups</Title>
+                    <Subtitle>4 groups</Subtitle>
                 </Body>
                 <Right>
-                    <Button transparent>
+                    <Button transparent onPress={hanhleSearchGroupPress}>
                         <Icon name='search' />
                     </Button>
                     <Button transparent onPress={handleCreateGroupPress}>

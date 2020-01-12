@@ -2,7 +2,8 @@ import React, {useState, useEffect} from "react";
 import {
     Container, 
     Content,
-    Header, 
+    Header,
+    Thumbnail,
     Left, 
     Body, 
     Right, 
@@ -15,8 +16,9 @@ import {
     Text, 
     Title,
     Subtitle,
-    View} from "native-base";
-import { PRIMARY_DARK } from "../../../consts";
+    View,
+    Grid} from "native-base";
+//import { PRIMARY_DARK } from "../../../consts";
 import styles from "./style";
 
 export default function CreateGroup({ navigation }) {
@@ -43,20 +45,27 @@ export default function CreateGroup({ navigation }) {
                     </Button>
                 </Right>
             </Header>
-            <Content>
-                <View>
+            <Content contentContainerStyle={styles.Content}>
+                <View style={styles.view}>
                     <Form>
-                        <Item floatingLabel>
-                            <Label>Group name</Label>
-                            <Input />
-                        </Item>
-                        <Item floatingLabel>
-                            <Label>Descripción del grupo</Label>
-                            <Input />
-                        </Item>
-                        <Button style={{ backgroundColor: PRIMARY_DARK }}>
-                            <Text>Create</Text>
-                        </Button>
+                        <Grid style={styles.from}>
+                            <Thumbnail large source={{uri: "https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_960_720.png"}} />
+                        </Grid>
+                        <Grid style={styles.from}>
+                            <Item floatingLabel>
+                                <Label>Group name:</Label>
+                                <Input />
+                            </Item>
+                            <Item floatingLabel>
+                                <Label>Group description:</Label>
+                                <Input />
+                            </Item>
+                        </Grid>
+                        <View style={styles.view}>
+                            <Button block style={styles.button}>
+                                <Text>Create</Text>
+                            </Button>
+                        </View>
                     </Form>
                 </View>
             </Content>
