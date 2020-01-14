@@ -4,8 +4,7 @@ import { PRIMARY, SECONDARY } from "../../consts";
 
 export default StyleSheet.create({
     footer: {
-        backgroundColor: PRIMARY,
-        color: 'red'
+        backgroundColor: PRIMARY
         // marginTop: Constants.platform.android ? Constants.statusBarHeight : 0
     },
     active: {

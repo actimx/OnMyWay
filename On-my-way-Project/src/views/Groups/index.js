@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { Image } from "react-native";
 import {
     Container, 
     Content,
@@ -14,8 +15,9 @@ import {
     Text, 
     Title,
     Subtitle,
-    View} from "native-base";
-import { CREATE_GROUP, SEARCH_GROUP } from "../../consts";
+    View,
+    Item} from "native-base";
+import { CREATE_GROUP, SEARCH_GROUP, PRIMARY_DARK, SINGRUPOS_ICON } from "../../consts";
 import styles from "./style";
 
 export default function Groups({ navigation }) {
@@ -42,7 +44,7 @@ export default function Groups({ navigation }) {
                 </Left>
                 <Body>
                     <Title>Groups</Title>
-                    <Subtitle>4 groups</Subtitle>
+                    <Subtitle>0 groups</Subtitle>
                 </Body>
                 <Right>
                     <Button transparent onPress={hanhleSearchGroupPress}>
@@ -53,8 +55,14 @@ export default function Groups({ navigation }) {
                     </Button>
                 </Right>
             </Header>
-            <Content>
-                <List>
+            <Content contentContainerStyle={styles.content}>
+
+                <Item style={{flexDirection: 'column', borderBottomWidth: 0}}>
+                    <Image source={SINGRUPOS_ICON} style={styles.googleIcon} />
+                    <Text style={{color: PRIMARY_DARK}}>There are no groups at the moment.</Text>
+                </Item>
+
+                {/* <List>
                     <ListItem avatar>
                         <Left>
                             <Thumbnail source={{ uri: 'https://s3-us-west-2.amazonaws.com/devcodepro/media/blog/como-funciona-reactjs.png' }} />
@@ -92,6 +100,7 @@ export default function Groups({ navigation }) {
                         </Body>
                     </ListItem>
                 </List>
+            */}
             </Content>
         </Container>
     );

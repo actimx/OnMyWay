@@ -17,7 +17,7 @@ export function MyFooter({ navigation }) {
     return (
             <Footer>
                 <FooterTab style={styles.footer}>
-                <Button vertical active style={{ backgroundColor: PRIMARY_DARK }}>
+                <Button vertical active>
                     <Icon name="apps" style={{ color: WHITE }}/>
                     <Text style={{ color: WHITE }}>Home</Text>
                 </Button>

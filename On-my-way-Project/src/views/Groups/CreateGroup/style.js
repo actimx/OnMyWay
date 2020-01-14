@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import Constants from "expo-constants";
-import { PRIMARY, PRIMARY_DARK } from "../../../consts";
+import { PRIMARY, PRIMARY_DARK, WHITE } from "../../../consts";
 
 export default StyleSheet.create({
     header: {
@@ -20,7 +20,12 @@ export default StyleSheet.create({
         marginLeft: 5,
         marginRight: 5,
     },
-    button: {
-        backgroundColor: PRIMARY_DARK
+    labelText: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        // color: WHITE
+    },
+    colorFontTxt:{
+        // color: WHITE
     }
 });

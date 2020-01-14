@@ -46,53 +46,48 @@ export default function Register({ navigation }) {
                     <ScrollView>
                         <Item style={styles.justifyItem}>
                             <Image source={LOGO} />
-                            <Text style={{ color: WHITE, marginBottom: 50 }} >R E G I S T E R</Text>
+                            <Text style={styles.title} >R E G I S T E R</Text>
 
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Name:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Type your name"
+                                <Input style={styles.colorFontTxt} placeholder="Type your name"
                                     onChangeText={(name) => onChangeName(name)}
-                                    value={name} placeholderTextColor={SECONDARY} />
+                                    value={name} placeholderTextColor={WHITE} />
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Last name:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Type your last name" placeholderTextColor={SECONDARY} />
-                                {/* <Input style={{ color: WHITE }} placeholder="Type your last name" placeholderTextColor={SECONDARY}
+                                <Input style={styles.colorFontTxt} placeholder="Type your last name" placeholderTextColor={WHITE} />
+                                {/* <Input style={styles.colorFontTxt} placeholder="Type your last name" placeholderTextColor={WHITE}
                                     onChangeText={(last_name) => onChangeLastName(last_name)}
-                                    value={last_name} placeholderTextColor={SECONDARY} /> */}
+                                    value={last_name} placeholderTextColor={WHITE} /> */}
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Email address:</Text>
-                                <Input style={{ color: WHITE }} placeholder='Enter your e-mail'
+                                <Input style={styles.colorFontTxt} placeholder='Enter your e-mail'
                                     onChangeText={(email) => onChangeEmail(email)}
-                                    value={email} placeholderTextColor={SECONDARY} />
+                                    value={email} placeholderTextColor={WHITE} />
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Password:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Enter a password"
-                                    placeholderTextColor={SECONDARY}
+                                <Input style={styles.colorFontTxt} placeholder="Enter a password"
+                                    placeholderTextColor={WHITE}
                                     onChangeText={(password) => onChangePassword(password)}
                                     value={password}
                                     secureTextEntry={true} />
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Confirm Password:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Confirm your password" placeholderTextColor={SECONDARY} />
-                                {/* <Input style={{ color: WHITE }} placeholder="Confirm your password"
-                                    placeholderTextColor={SECONDARY}
-                                    onChangeText={(confirm_password) => onChangeConfirmPassword(confirm_password)}
-                                    value={confirm_password}
-                                    secureTextEntry={true} /> */}
+                                <Input style={styles.colorFontTxt} placeholder="Confirm your password" placeholderTextColor={WHITE} />
                             </Item>
                             <Item>
-                                <Button style={{ backgroundColor: SECONDARY }}
+                                <Button primary
                                     onPress={register}>
                                     <Text>Create Account</Text>
                                 </Button>
                             </Item>
                             <Item>
                                 <Text onPress={handleLoginPress} style={styles.alignText}>Already have an account?</Text>
-                                <Input style={{ color: WHITE }} />
+                                <Input style={styles.colorFontTxt} />
                             </Item>
 
                         </Item>
@@ -102,9 +97,8 @@ export default function Register({ navigation }) {
             <Footer>
                 <FooterTab>
                     <Button full
-                        onPress={handleLoginPress}
-                    >
-                        <Text>Log in</Text>
+                        onPress={handleLoginPress}>
+                        <Text style={styles.textBtnFooter}>Log in</Text>
                     </Button>
                 </FooterTab>
             </Footer>

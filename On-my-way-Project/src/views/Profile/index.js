@@ -42,7 +42,7 @@ export default function Profile({ navigation }) {
             <Content contentContainerStyle={styles.content}>
                 <View style={styles.imageContainer}>
                     <Button transparent style={styles.backButton} onPress={handleBackPress}>
-                    <Icon android="md-arrow-round-back" ios="ios-arrow-round-back"/>
+                    <Icon android="md-arrow-round-back" ios="ios-arrow-round-back" style={{color: 'white'}}/>
                     </Button>
                     <Thumbnail source={{ uri: userInfo.photoUrl }} style={styles.profileImage}/>
                 </View>

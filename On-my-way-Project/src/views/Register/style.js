@@ -20,20 +20,32 @@ export default StyleSheet.create({
         alignItems: 'center',
         width: width
     },
+    title: { 
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: WHITE, 
+        marginBottom: 30 
+    },
     input: {
         width: width - 30,
         marginBottom: 25,
         flexDirection: 'column',
         alignItems: 'flex-start'
-        // justifyContent: 'flex-start'
-        // height: 90
     },
     labelText: {
+        fontSize: 17,
+        fontWeight: 'bold',
         color: WHITE,
     },
     alignText: {
         color: WHITE,
         width: width,
         textAlign: 'center'
+    },
+    colorFontTxt: {
+        color: WHITE
+    },
+    textBtnFooter: {
+        color: WHITE
     }
 });

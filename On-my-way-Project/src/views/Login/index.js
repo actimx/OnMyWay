@@ -125,7 +125,7 @@ export default function Login({ navigation }) {
                 <Grid style={style.grid}>
                     {/* <Text style={style.title}>Welcome to</Text> */}
                     <Image source={LOGO_OFICIAL} />
-                    <Text style={style.subtitle}>Login to continue</Text>
+                    <Text style={style.title}>Login to continue</Text>
 
                     <Item style={style.itemInput}>
                         <Icon active name='person' />
@@ -138,13 +138,13 @@ export default function Login({ navigation }) {
                             value={password}
                             secureTextEntry={true} />
                     </Item>
-                    <Button style={style.loginBtn} light
+                    <Button primary style={style.btnLogin}
                         onPress={login}>
                         <Text>LOG IN</Text>
                     </Button>
-                    <Text style={{ fontSize: 12, color: 'blue', textDecorationLine: 'underline', marginTop: 15 }}>Did you forget your password?</Text>
+                    <Text style={style.redirecURLText}>Did you forget your password?</Text>
                     <Item style={{ marginTop: 20 }}>
-                        <Text >Login with</Text>
+                        <Text>Login with</Text>
                     </Item>
 
                     <Button style={style.googleBtn} light
@@ -152,11 +152,11 @@ export default function Login({ navigation }) {
                     >
                         <Image source={GOOGLE_IMAGE} style={style.googleIcon} />
                     </Button>
-                    <Button style={style.facebookBtn} light
+                    {/* <Button style={style.facebookBtn} light
                         onPress={handleLoginFacebookPress}
                     >
                         <Image source={FACEBOOK_IMAGE} style={style.googleIcon} />
-                    </Button>
+                    </Button> */}
                 </Grid>
 
             </Content>
@@ -164,7 +164,7 @@ export default function Login({ navigation }) {
                 <FooterTab>
                     <Button full
                         onPress={handleRegisterPress}>
-                        <Text>Sign in</Text>
+                        <Text style={style.textBtnFooter}>Sign in</Text>
                     </Button>
                 </FooterTab>
             </Footer>
