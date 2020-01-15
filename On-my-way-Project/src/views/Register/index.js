@@ -3,27 +3,42 @@ import { Container, Content, Text, View, Grid, Form, Item, Input, Button, Footer
 import { ImageBackground, Image, ScrollView } from "react-native";
 
 import styles from "./style";
-
-import { RegisterBackground, LOGO, WHITE, SECONDARY, PRIMARY, LOGIN } from '../../consts';
+import { saveItem } from "../../utils/storage";
+import { RegisterBackground, LOGO, WHITE, SECONDARY, LOGIN, ACCESS_TOKEN, USER_INFO, HOME } from '../../consts';
 
 export default function Register({ navigation }) {
 
     const [name, onChangeName] = React.useState('ejemplo');
-    // const [last_name, onChangeLastName] = React.useState('ejemplo');
     const [email, onChangeEmail] = React.useState('ejemplo@ejemplo.com');
     const [password, onChangePassword] = React.useState('12345678');
-    // const [confirm_password, onChangeConfirmPassword] = React.useState('12345678');
+    const [c_password, onChangeConfirmPassword] = React.useState('12345678');
 
     register = async () => {
         try {
             let response = await fetch(
-                `https://onmyway69.herokuapp.com/api/auth/register?name=${name}&email=${email}&password=${password}`, {
+                `https://onmyway69.herokuapp.com/api/auth/register?name=${name}&email=${email}&password=${password}&c_password=${c_password}`, {
                 method: 'POST'
             });
+
             let responseJson = await response.json();
-            if (responseJson == true) {
+            if (responseJson.access_token) {
                 alert("Se registro correctamente");
-                navigation.navigate(LOGIN);
+                let access_token = responseJson.access_token;
+
+                let user = {
+                    email: email,
+                    name: name
+                }
+
+                const userResult = await saveItem(USER_INFO, JSON.stringify(user));
+                const tokenResult = await saveItem(ACCESS_TOKEN, access_token);
+
+                if (userResult && tokenResult) {
+                    navigation.navigate(HOME);
+                } else {
+                    alert('Error al realizar registro');
+                }
+
             } else {
                 alert(responseJson.errors);
                 return false;
@@ -46,48 +61,45 @@ export default function Register({ navigation }) {
                     <ScrollView>
                         <Item style={styles.justifyItem}>
                             <Image source={LOGO} />
-                            <Text style={styles.title} >R E G I S T E R</Text>
-
+                            <Text style={{ color: WHITE, marginBottom: 50 }} >R E G I S T E R</Text>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Name:</Text>
-                                <Input style={styles.colorFontTxt} placeholder="Type your name"
+                                <Input style={{ color: WHITE }} placeholder="Type your name"
                                     onChangeText={(name) => onChangeName(name)}
-                                    value={name} placeholderTextColor={WHITE} />
-                            </Item>
-                            <Item style={styles.input}>
-                                <Text style={styles.labelText}>Last name:</Text>
-                                <Input style={styles.colorFontTxt} placeholder="Type your last name" placeholderTextColor={WHITE} />
-                                {/* <Input style={styles.colorFontTxt} placeholder="Type your last name" placeholderTextColor={WHITE}
-                                    onChangeText={(last_name) => onChangeLastName(last_name)}
-                                    value={last_name} placeholderTextColor={WHITE} /> */}
+                                    value={name} placeholderTextColor={SECONDARY} />
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Email address:</Text>
-                                <Input style={styles.colorFontTxt} placeholder='Enter your e-mail'
+                                <Input style={{ color: WHITE }} placeholder='Enter your e-mail'
                                     onChangeText={(email) => onChangeEmail(email)}
-                                    value={email} placeholderTextColor={WHITE} />
+                                    value={email} placeholderTextColor={SECONDARY} />
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Password:</Text>
-                                <Input style={styles.colorFontTxt} placeholder="Enter a password"
-                                    placeholderTextColor={WHITE}
+                                <Input style={{ color: WHITE }} placeholder="Enter a password"
+                                    placeholderTextColor={SECONDARY}
                                     onChangeText={(password) => onChangePassword(password)}
                                     value={password}
                                     secureTextEntry={true} />
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Confirm Password:</Text>
-                                <Input style={styles.colorFontTxt} placeholder="Confirm your password" placeholderTextColor={WHITE} />
+                                <Input style={{ color: WHITE }} placeholder="Confirm your password" placeholderTextColor={SECONDARY} />
+                                <Input style={{ color: WHITE }} placeholder="Confirm your password"
+                                    placeholderTextColor={SECONDARY}
+                                    onChangeText={(c_password) => onChangeConfirmPassword(c_password)}
+                                    value={c_password}
+                                    secureTextEntry={true} />
                             </Item>
                             <Item>
-                                <Button primary
+                                <Button style={{ backgroundColor: SECONDARY }}
                                     onPress={register}>
                                     <Text>Create Account</Text>
                                 </Button>
                             </Item>
                             <Item>
                                 <Text onPress={handleLoginPress} style={styles.alignText}>Already have an account?</Text>
-                                <Input style={styles.colorFontTxt} />
+                                <Input style={{ color: WHITE }} />
                             </Item>
 
                         </Item>
@@ -97,8 +109,9 @@ export default function Register({ navigation }) {
             <Footer>
                 <FooterTab>
                     <Button full
-                        onPress={handleLoginPress}>
-                        <Text style={styles.textBtnFooter}>Log in</Text>
+                        onPress={handleLoginPress}
+                    >
+                        <Text>Log in</Text>
                     </Button>
                 </FooterTab>
             </Footer>
