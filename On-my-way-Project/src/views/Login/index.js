@@ -10,6 +10,8 @@ import enviroment from "../../../enviroment";
 import { saveItem } from "../../utils/storage";
 import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE, HOME, IDENTIFICADOR_APP_FACEBOOK, REGISTER } from "../../consts";
 
+import aut from "../../utils/aut";
+
 const GOOGLE_IMAGE = require('../../../assets/google-icon.png');
 const FACEBOOK_IMAGE = require('../../../assets/facebook-icon.png');
 const LOGO_OFICIAL = require('../../../assets/onmyway-logo.png');
@@ -75,7 +77,13 @@ export default function Login({ navigation }) {
                 const tokenResult = await saveItem(ACCESS_TOKEN, accessToken);
 
                 if (userResult && tokenResult) {
-                    navigation.navigate(HOME);
+                    let name = user.name;
+                    let email = user.email;
+
+                    // aut.register(name, email, tokenResult, tokenResult);
+                    //Le mando el tokenResult por que no tengo acceso a la contraseña de google
+
+                    aut.registerWithoutMessages(name, email, "12345678", "12345678", navigation);
                 } else {
                     alert('Error al iniciar sesión');
                 }
