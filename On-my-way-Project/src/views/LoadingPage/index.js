@@ -13,7 +13,7 @@ export default ({ navigation }) => {
     
 const redirect = async () => {
     const token = getItem(ACCESS_TOKEN);
-    console.log("Token: ", token)
+    // console.log("Token: ", token)
     let route = LOGIN;
     if (!token == null) {
         route = HOME;

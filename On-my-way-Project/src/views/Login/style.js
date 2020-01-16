@@ -20,7 +20,8 @@ export default StyleSheet.create({
         height: 0
     },
     title: {
-        // fontSize: 30,
+        marginTop: 10,
+        marginBottom: 20,
         fontWeight: 'bold'
     },
     btnLogin: {

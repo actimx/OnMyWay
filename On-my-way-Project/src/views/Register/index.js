@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Content, Text, View, Grid, Form, Item, Input, Button, Footer, FooterTab } from "native-base";
+import { Container, Content, Text, Label, Grid, Form, Item, Input, Button, Footer, FooterTab } from "native-base";
 import { ImageBackground, Image, ScrollView } from "react-native";
 
 import styles from "./style";
@@ -11,10 +11,10 @@ import aut from "../../utils/aut";
 
 export default function Register({ navigation }) {
 
-    const [name, onChangeName] = React.useState('ejemplo');
-    const [email, onChangeEmail] = React.useState('ejemplo@ejemplo.com');
-    const [password, onChangePassword] = React.useState('12345678');
-    const [c_password, onChangeConfirmPassword] = React.useState('12345678');
+    const [name, onChangeName] = React.useState('');
+    const [email, onChangeEmail] = React.useState('');
+    const [password, onChangePassword] = React.useState('');
+    const [c_password, onChangeConfirmPassword] = React.useState('');
 
     register = () => {
         aut.register(name, email, password, c_password, navigation);
@@ -57,9 +57,6 @@ export default function Register({ navigation }) {
     //     }
     // }
 
-    const handleLoginPress = () => {
-        navigation.navigate(LOGIN);
-    };
     return (
         // <ScrollView>
         <Container>
@@ -71,41 +68,48 @@ export default function Register({ navigation }) {
                             <Text style={{ color: WHITE, marginBottom: 50 }} >R E G I S T E R</Text>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Name:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Type your name"
-                                    onChangeText={(name) => onChangeName(name)}
-                                    value={name} placeholderTextColor={SECONDARY} />
+                                <Item regular>
+                                    <Input style={{ color: WHITE }} placeholder="Type your name"
+                                        onChangeText={(name) => onChangeName(name)}
+                                        value={name} placeholderTextColor={SECONDARY} />
+                                </Item>
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Email address:</Text>
-                                <Input style={{ color: WHITE }} placeholder='Enter your e-mail'
-                                    onChangeText={(email) => onChangeEmail(email)}
-                                    value={email} placeholderTextColor={SECONDARY} />
+                                <Item regular>
+                                    <Input style={{ color: WHITE, borderColor: 'red' }} placeholder='Enter your e-mail'
+                                        onChangeText={(email) => onChangeEmail(email)}
+                                        value={email} placeholderTextColor={SECONDARY} />
+                                    </Item>
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Password:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Enter a password"
+                                <Item regular>
+                                    <Input style={{ color: WHITE }} placeholder="Enter a password"
                                     placeholderTextColor={SECONDARY}
                                     onChangeText={(password) => onChangePassword(password)}
                                     value={password}
                                     secureTextEntry={true} />
+                                </Item>                                
                             </Item>
                             <Item style={styles.input}>
                                 <Text style={styles.labelText}>Confirm Password:</Text>
-                                <Input style={{ color: WHITE }} placeholder="Confirm your password" placeholderTextColor={SECONDARY} />
-                                <Input style={{ color: WHITE }} placeholder="Confirm your password"
+                                <Item regular>
+                                    <Input style={{ color: WHITE }} placeholder="Confirm your password"
                                     placeholderTextColor={SECONDARY}
                                     onChangeText={(c_password) => onChangeConfirmPassword(c_password)}
                                     value={c_password}
                                     secureTextEntry={true} />
+                                </Item>                                
                             </Item>
-                            <Item>
+                            <Item style={{ borderBottomWidth: 0 }}>
                                 <Button style={{ backgroundColor: SECONDARY }}
                                     onPress={register}>
                                     <Text>Create Account</Text>
                                 </Button>
                             </Item>
                             <Item>
-                                <Text onPress={handleLoginPress} style={styles.alignText}>Already have an account?</Text>
+                                <Text onPress={() => { navigation.navigate }} style={styles.alignText}>Already have an account?</Text>
                                 <Input style={{ color: WHITE }} />
                             </Item>
 
@@ -116,8 +120,7 @@ export default function Register({ navigation }) {
             <Footer>
                 <FooterTab>
                     <Button full
-                        onPress={handleLoginPress}
-                    >
+                        onPress={() => { navigation.navigate(LOGIN) }}>
                         <Text>Log in</Text>
                     </Button>
                 </FooterTab>

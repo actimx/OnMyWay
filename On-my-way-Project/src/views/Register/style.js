@@ -15,6 +15,7 @@ export default StyleSheet.create({
         height: '100%',
     },
     justifyItem: {
+        borderBottomWidth: 0,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
@@ -27,6 +28,7 @@ export default StyleSheet.create({
         marginBottom: 30 
     },
     input: {
+        borderBottomWidth: 0,
         width: width - 30,
         marginBottom: 25,
         flexDirection: 'column',
@@ -36,6 +38,7 @@ export default StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
         color: WHITE,
+        marginBottom: 5
     },
     alignText: {
         color: WHITE,
