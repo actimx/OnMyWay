@@ -22,7 +22,7 @@ import Results from "../views/Results";
 import Profile from "../views/Profile";
 import Groups from "../views/Groups";
 import CreateGroup from "../views/Groups/CreateGroup";
-import SearchGroup from "../views/Groups/SearchGroup"
+import SearchGroup from "../views/Groups/SearchGroup";
 import Register from "../views/Register";
 
 // crear stackNavigator
