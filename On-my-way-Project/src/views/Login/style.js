@@ -46,16 +46,24 @@ export default StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#3b5998'
     },
-    
     googleIcon: {
         width: 30,
         height: 30
     },
     itemInput: {
         width: width / 1.2,
+        borderBottomWidth: 0,
+        marginBottom: 10
+
     },
     btnFooter: {
         backgroundColor: SECONDARY
+    },
+    labelQuestion: {
+        width,
+        textAlign: 'center',
+        color: PRIMARY,
+        marginBottom: 5
     },
     textBtnFooter: {
         color: WHITE

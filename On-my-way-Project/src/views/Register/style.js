@@ -43,7 +43,8 @@ export default StyleSheet.create({
     alignText: {
         color: WHITE,
         width: width,
-        textAlign: 'center'
+        textAlign: 'center',
+        padding: 10
     },
     colorFontTxt: {
         color: WHITE

@@ -1,14 +1,17 @@
-import React from "react";
-import { Image } from 'react-native';
+import React, { useState } from "react";
+import { Image, ToastAndroid } from 'react-native';
 import * as Google from 'expo-google-app-auth';
-import { Container, Footer, FooterTab, Content, Grid, Spinner, Input, Label, Item, Icon, Button, Text, Body } from 'native-base';
+import { Container, Footer, FooterTab, Content, Grid, Item, Button, Text } from 'native-base';
+
+// React Native Elements
+import { Input, Icon } from 'react-native-elements';
 
 import Expo from "expo";
 
 import style from './style';
 import enviroment from "../../../enviroment";
 import { saveItem } from "../../utils/storage";
-import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE, HOME, IDENTIFICADOR_APP_FACEBOOK, REGISTER } from "../../consts";
+import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE, HOME, WHITE, REGISTER } from "../../consts";
 
 import aut from "../../utils/aut";
 
@@ -28,8 +31,9 @@ export default function Login({ navigation }) {
     const [email, onChangeEmail] = React.useState('');
     const [password, onChangePassword] = React.useState('');
 
-    login = async () => {
+    const [hiddePassword, setHiddePassword] = useState(true);
 
+    login = async () => {
         try {
             let response = await fetch(
                 `https://onmyway69.herokuapp.com/api/auth/login?username=${email}&password=${password}`, {
@@ -97,33 +101,42 @@ export default function Login({ navigation }) {
         <Container>
             <Content contentContainerStyle={style.content}>
                 <Grid style={style.grid}>
-                    {/* <Text style={style.title}>Welcome to</Text> */}
                     <Image source={LOGO_OFICIAL} />
                     <Text style={style.title}>Login to continue</Text>
 
                     <Item style={style.itemInput}>
-                        <Icon active name='person' />
                         <Input placeholder='E-mail' onChangeText={(email) => onChangeEmail(email)}
-                            value={email} />
+                            value={email}
+                            allowFontScaling={false}
+                            rightIcon={
+                                <Icon
+                                    type="font-awesome"
+                                    name="at"/>
+                                } />
                     </Item>
                     <Item style={style.itemInput}>
-                        <Icon active name='key' />
                         <Input placeholder='Password' onChangeText={(password) => onChangePassword(password)}
                             value={password}
-                            secureTextEntry={true} />
+                            secureTextEntry={hiddePassword}
+                            rightIcon={
+                                <Icon
+                                    type="font-awesome"
+                                    name={hiddePassword ? 'eye' : 'eye-slash'}
+                                    onPress={ () => setHiddePassword(!hiddePassword) }/>
+                                } />
+                        {/* <Icon active name='md-eye-off' /> */}
                     </Item>
                     <Button primary style={style.btnLogin}
                         onPress={login}>
                         <Text>LOG IN</Text >
                     </Button>
                     <Text style={style.redirecURLText}>Did you forget your password?</Text>
-                    <Item style={{ marginTop: 20 }}>
+                    {/* <Item style={{ marginTop: 20 }}>
                         <Text>Login with</Text>
-                    </Item>
+                    </Item> */}
 
                     <Button style={style.googleBtn} light
-                        onPress={handleLoginPress}
-                    >
+                        onPress={handleLoginPress}>
                         <Image source={GOOGLE_IMAGE} style={style.googleIcon} />
                     </Button>
                     {/* <Button style={style.facebookBtn} light
@@ -131,7 +144,9 @@ export default function Login({ navigation }) {
                         <Image source={FACEBOOK_IMAGE} style={style.googleIcon} />
                     </Button> */}
                 </Grid>
-
+                <Item>
+                    <Text onPress={() => { navigation.navigate }} style={style.labelQuestion}>¿Do not you have an account yet?</Text>
+                </Item>
             </Content>
             <Footer>
                 <FooterTab>
