@@ -6,11 +6,17 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { TOKEN_LARAVEL_MACACAR96, GROUPS } from "../../../consts";
 import styles from "./style";
 
 
 export default function CreateGroup({ navigation }) {
+
+    const solid_iconFontAwesome5Images = <FontAwesome5 name={'images'} solid/>;
+    const solid_iconFontAwesomeCamera = <FontAwesome name={'camera'} solid/>;
 
     imgDefault = {
         image: "",
@@ -23,7 +29,7 @@ export default function CreateGroup({ navigation }) {
     var BUTTONS = [
         { 
             text: "Gallery", 
-            icon: "american-football", 
+            icon: "images", 
             iconColor: "#2c8ef4",
             handler: (typeAction) => {
                 actionSheetPress(typeAction);
@@ -32,7 +38,7 @@ export default function CreateGroup({ navigation }) {
         },
         { 
             text: "Take photo", 
-            icon: "analytics", 
+            icon: "camera", 
             iconColor: "#f42ced",
             handler: (typeAction) => {
                 actionSheetPress(typeAction);
@@ -41,7 +47,7 @@ export default function CreateGroup({ navigation }) {
         { 
             text: "Cancel", 
             icon: "close", 
-            iconColor: "#25de5b",
+            iconColor: "#FF0000",
             handler: (typeAction) => {
                 actionSheetPress(typeAction);
             }
@@ -140,7 +146,7 @@ export default function CreateGroup({ navigation }) {
             //alert('Option Two: ' + typeAction);
             pickImageCamera();
         } else {
-            alert('Option Three: ' + typeAction);
+            //alert('Option Three: ' + typeAction);
         }
 
     }
