@@ -11,9 +11,12 @@ export default StyleSheet.create({
         flex: 1
     },
     from: {
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
-        flexDirection: "column"
+        flexDirection: "row",
+    },
+    item: {
+        width: 250
     },
     view: {
         marginTop: 30,
@@ -27,5 +30,15 @@ export default StyleSheet.create({
     },
     colorFontTxt:{
         // color: WHITE
+    },
+    viewNote: {
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+    },
+    textNote: {
+        marginTop: 10,
+        fontSize: 12,
+        
     }
 });

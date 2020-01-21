@@ -18,5 +18,11 @@ export default StyleSheet.create({
         width: 50,
         height: 50,
         marginBottom: 30
+    },
+    bodyItem: {
+        marginTop: 5
+    },
+    listItem: {
+        
     }
 });
