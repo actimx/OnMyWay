@@ -25,10 +25,18 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alexcompany.udemyapp"
+      "bundleIdentifier": "com.alexcompany.udemyapp",
+      "config": {
+        "googleMapsApiKey": "AIzaSyDPEA5hS4M5KFR5PA3XxKBWU8-blf-PvgE"
+      }
     },
     "android": {
-      "package": "com.alexcompany.udemyapp"
+      "package": "com.alexcompany.udemyapp",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDPEA5hS4M5KFR5PA3XxKBWU8-blf-PvgE"
+        }
+      }
     }
   }
 }

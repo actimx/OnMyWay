@@ -5,6 +5,8 @@ export const REGISTER = 'Register';
 export const HOME = 'Home';
 export const RESULTS = 'Results';
 export const PROFILE = 'Profile';
+export const MAPS = 'Maps';
+
 
 // Routes Groups
 export const GROUPS = 'Groups';
