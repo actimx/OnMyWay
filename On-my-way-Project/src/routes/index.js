@@ -13,6 +13,8 @@ import {
     GROUPS,
     CREATE_GROUP,
     SEARCH_GROUP,
+    EVENT,
+    CREATE_EVENT,
     MAPS
 } from "../consts";
 
@@ -25,6 +27,8 @@ import Groups from "../views/Groups";
 import CreateGroup from "../views/Groups/CreateGroup";
 import SearchGroup from "../views/Groups/SearchGroup";
 import Register from "../views/Register";
+import Event from "../views/Events";
+import CreateEvent from "../views/Events/CreateEvent";
 import Maps from "../views/Maps";
 
 // crear stackNavigator
@@ -38,6 +42,8 @@ const AppNavigator = createStackNavigator({
     [GROUPS]: Groups,
     [CREATE_GROUP]: CreateGroup,
     [SEARCH_GROUP]: SearchGroup,
+    [EVENT]: Event,
+    [CREATE_EVENT]: CreateEvent,
     [MAPS]: Maps,
 }, {
     // Esconder el header de react navigation

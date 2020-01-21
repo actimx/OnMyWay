@@ -7,6 +7,9 @@ export const RESULTS = 'Results';
 export const PROFILE = 'Profile';
 export const MAPS = 'Maps';
 
+// Routes Events
+export const EVENT = 'Event';
+export const CREATE_EVENT = 'CreateEvent';
 
 // Routes Groups
 export const GROUPS = 'Groups';
@@ -22,10 +25,10 @@ export const RegisterBackground = require('../../assets/splash.jpg');
 export const LOGO = require('../../assets/onmyway-logo.png');
 export const GROUPS_ICON = require('../../assets/equipo.png');
 export const NAVIGATE_ICON = require('../../assets/marcador.png');
-export const NOTIFICATION_ICON = require('../../assets/campana.png');
+export const EVENTS_ICON = require('../../assets/calendario.png');
 export const PROFIL_ICON = require('../../assets/cuenta.png');
 export const CONFIGURATION_ICON = require('../../assets/engranaje.png');
-export const SINGRUPOS_ICON = require('../../assets/nevada.png');
+export const NOTFOUND_ICON = require('../../assets/nevada.png');
 
 // Info
 export const ACCESS_TOKEN = '@access-token';
