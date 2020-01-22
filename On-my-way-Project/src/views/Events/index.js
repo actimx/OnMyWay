@@ -7,6 +7,8 @@ import { NOTFOUND_ICON, CREATE_EVENT } from "../../consts";
 
 import styles from "./style";
 
+import ListEvents from "../../components/ListEvents";
+
 export default function Event ({ navigation }) {
     return (
         <Container>
@@ -29,8 +31,9 @@ export default function Event ({ navigation }) {
                 </Right>
             </Header>
             <Content contentContainerStyle={styles.content}>
-                    <Image source={NOTFOUND_ICON} style={styles.imgSize} />
-                    <Text style={styles.textNotFound}>I'm sorry! For the moment there is no events.</Text>
+                    {/* <Image source={NOTFOUND_ICON} style={styles.imgSize} />
+                    <Text style={styles.textNotFound}>I'm sorry! For the moment there is no events.</Text> */}
+                    <ListEvents />
             </Content>
         </Container>
         
