@@ -11,6 +11,6 @@ export default StyleSheet.create({
         margin: 5
     },
     button: {
-        backgroundColor: PRIMARY_DARK
+        backgroundColor: PRIMARY
     }
 });

@@ -9,10 +9,6 @@ export default StyleSheet.create({
     },
     content: {
         // backgroundColor: PRIMARY_DARK,
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
     },
     googleIcon: {
         width: 50,

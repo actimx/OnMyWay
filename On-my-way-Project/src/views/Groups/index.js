@@ -5,15 +5,60 @@ import {
     Button, Icon, Text, Title, Subtitle, View, Item} from "native-base";
 import { CREATE_GROUP, SEARCH_GROUP, PRIMARY_DARK, SINGRUPOS_ICON, TOKEN_LARAVEL_MACACAR96 } from "../../consts";
 import styles from "./style";
+import ListGroups from "../../components/ListGroups/ListGroups";
 
-var conta = 1;
+//var conta = 1;
 
 export default function Groups({ navigation }) {
 
+    const [idUser, setIdUser] = useState("111"); 
+    let [groupsPrepare, setGroupsPrepare] = useState({data : []});
+    let [groups, setGroups] = useState({data : []});
+    const [startGroups, setStartGroups] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [totalGroups, setTotalGroups] = useState(0);
+    const limitGroups = 8;
+    const [dataAPI, setDataAPI] = useState(null);
+
+    //console.log(totalGroups);
+
+    useEffect(() => {
+        console.log("Consultando API");
+
+        fetch('https://onmyway69.herokuapp.com/api/groups/111', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': TOKEN_LARAVEL_MACACAR96,
+            }
+        })
+            .then((response) => {return response.json()})
+            .then((responseJson) => {
+                //return responseJson.movies;
+                if (groupsPrepare.data.length != 0){
+                    setTotalGroups(groupsPrepare.data.length);
+                    setGroups(groupsPrepare);
+                } else {
+                    setGroupsPrepare({data : responseJson.group_information});
+                }
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    }, [groupsPrepare]);
+
+   /*  useEffect(() => {
+        
+    }, []); */
+    
     //Variables
-    const [dataGroups, setDataGroups] = useState(null);
+    //const [dataGroups, setDataGroups] = useState(null);
+
     // Cargarmos los datos de la API
-    const dataGroupsApi = async () => {
+    /*const dataGroupsApi = async () => {
         try {
             let response = await fetch(
                 'https://onmyway69.herokuapp.com/api/groups', {
@@ -41,7 +86,7 @@ export default function Groups({ navigation }) {
     if (conta == 1) {
         dataGroupsApi();
         conta++;
-    }
+    }*/
 
     const handleBackPress = () => {
         conta = 1;
@@ -57,10 +102,10 @@ export default function Groups({ navigation }) {
         navigation.navigate(SEARCH_GROUP);
     }
 
-    const handlePress = () => {
+    /*const handlePress = () => {
         //console.log("Si funciona");
         //console.log({dataGroups});
-    }
+    }*/
 
     return (
         <Container>
@@ -72,7 +117,7 @@ export default function Groups({ navigation }) {
                 </Left>
                 <Body>
                     <Title>Groups</Title>
-                    <Subtitle>0 groups</Subtitle>
+                    <Subtitle>{totalGroups} groups</Subtitle>
                 </Body>
                 <Right>
                     <Button transparent onPress={hanhleSearchGroupPress}>
@@ -83,8 +128,11 @@ export default function Groups({ navigation }) {
                     </Button>
                 </Right>
             </Header>
-            <Content contentContainerStyle={styles.content1}>
-                {dataGroups ? (
+            <Content contentContainerStyle={styles.content}>
+                <ListGroups groups={groups} isLoading={isLoading}></ListGroups>
+
+
+                {/* {dataGroups ? (
                     <List>
                         <FlatList
                             data={dataGroups.groups}
@@ -101,43 +149,14 @@ export default function Groups({ navigation }) {
                             <Text style={{color: PRIMARY_DARK}}>There are no groups at the moment.</Text>
                         </Item>
                     </List>
-                )}
-
-
-                {/* <List>
-                    <Item style={{flexDirection: 'column', borderBottomWidth: 0}}>
-                        <Image source={SINGRUPOS_ICON} style={styles.googleIcon} />
-                        <Text style={{color: PRIMARY_DARK}}>There are no groups at the moment.</Text>
-                    </Item>
-                </List> */}
-
-                {/* <List>
-                    <ListItem avatar onPress={handlePress}>
-                        <Left style={styles.listItem}>
-                            <Thumbnail source={{ uri: 'https://s3-us-west-2.amazonaws.com/devcodepro/media/blog/como-funciona-reactjs.png' }} />
-                        </Left>
-                        <Body style={styles.bodyItem}>
-                            <Text>Group One</Text>
-                            <Text note>25 users added</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem avatar onPress={handlePress}>
-                        <Left style={styles.listItem}>
-                            <Thumbnail source={{ uri: 'https://s3-us-west-2.amazonaws.com/devcodepro/media/blog/como-funciona-reactjs.png' }} />
-                        </Left>
-                        <Body>
-                            <Text>Group One</Text>
-                            <Text note>25 users added</Text>
-                        </Body>
-                    </ListItem>
-                </List> */}
+                )} */}
            
             </Content>
         </Container>
     );
 }
 
-function GroupsCom(props) {
+/* function GroupsCom(props) {
     const {data} = props;
     //console.log(data);
     const {id, user_id, name, photo} = data.item;
@@ -155,4 +174,4 @@ function GroupsCom(props) {
         </ListItem>
         
     )
-}
+} */

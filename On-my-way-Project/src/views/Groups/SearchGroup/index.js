@@ -22,7 +22,7 @@ export default function SearchGroup({navigation}){
       </Header>
       <Content>
         <View style={styles.view}>
-          <Button block style={styles.button} onPress={handleBackPress}>
+          <Button block style={styles.button1} onPress={handleBackPress}>
             <Text>Back</Text>
           </Button>
         </View>

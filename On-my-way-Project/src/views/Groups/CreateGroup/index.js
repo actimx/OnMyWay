@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import {TouchableOpacity} from "react-native";
 import {
     Root, Container, Content, Header, Thumbnail, Left, Body, Right, Button, 
     Icon, Form, Item, Label, Input, Text, Title, Subtitle, ActionSheet,
@@ -23,7 +24,8 @@ export default function CreateGroup({ navigation }) {
     };
 
     let [imageSelect, onChangeImage] = useState("https://cdn.pixabay.com/photo/2017/01/25/17/35/picture-2008484_960_720.png");
-
+    const [imageSelectBase64, setImageSelectBase64] = useState(null);
+    const [groupName, onChangeGroupName] = useState("");
     //let { image } = img;
 
     var BUTTONS = [
@@ -99,18 +101,16 @@ export default function CreateGroup({ navigation }) {
           base64: true
         });
     
-        console.log(result);
+        //console.log(result);
     
         if (!result.cancelled) {
             //img = { image: result.uri };
             onChangeImage(result.uri);
+            setImageSelectBase64(result.base64);
+            console.log(result.base64);
           //alert(result.uri);
         }
     };
-
-
-    // inputs
-    const [groupName, onChangeGroupName] = useState("");
 
     // onPress ActionSheet
     const handleActionSheetPress = () => {
@@ -165,7 +165,7 @@ export default function CreateGroup({ navigation }) {
                 body: JSON.stringify({
                     user_id: '111',
                     name: groupName,
-                    photo: 'Avatar',
+                    photo: imageSelectBase64,
                 }),
             });
 
@@ -184,8 +184,8 @@ export default function CreateGroup({ navigation }) {
     }
 
     const handleBackPress = () => {
-        //navigation.goBack();
-        navigation.navigate(GROUPS);
+        navigation.goBack();
+        //navigation.navigate(GROUPS);
     };
 
     return (
@@ -202,7 +202,7 @@ export default function CreateGroup({ navigation }) {
                     <Subtitle>New group</Subtitle>
                 </Body>
                 <Right>
-                    <Button transparent>
+                    <Button transparent onPress={handleBackPress}>
                         <Text>Cancel</Text>
                     </Button>
                 </Right>
