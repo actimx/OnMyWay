@@ -24,5 +24,10 @@ export default StyleSheet.create({
     fontWeight: '400',
     fontSize: 17,
     textAlign: 'center'
+  },
+  loadingEvents: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    flex: 1
   }
 })

@@ -56,20 +56,20 @@ const aut = {
         const tokenResult = await saveItem(ACCESS_TOKEN, accessToken)
 
         if (userResult && tokenResult) {
-          navigation.navigate(HOME)
+          return responseJson
         } else {
-          alert('Error al guardar usuario')
+          throw new Error('Error al guardar usuario')
         }
       } else {
         if (responseJson.errors === 'The email has already been taken.') {
-          navigation.navigate(HOME)
+          return responseJson
+          // navigation.navigate(HOME)
         }
         return false
       }
-      return responseJson
     } catch (error) {
       console.error(error)
-      return false
+      throw new Error(error)
     }
   }
 }

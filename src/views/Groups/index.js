@@ -13,7 +13,6 @@ function Groups () {
   const [groups, setGroups] = useState({ data: [] })
   // const [startGroups, setStartGroups] = useState(null)
   // const [isLoading, setIsLoading] = useState(false)
-
   // const limitGroups = 8
   // const [dataAPI, setDataAPI] = useState(null)
 

@@ -22,16 +22,16 @@ class ListGroups extends React.Component {
   }
 
     handleSearchFilterFunction = text => {
-      console.log('SearchFilterFunction')
-      console.log(this.state.fullData)
+      // console.log('SearchFilterFunction')
+      // console.log(this.state.fullData)
       const textData = text.toUpperCase()
-      console.log(textData)
+      // console.log(textData)
       const newData = this.state.fullData.filter(item => {
         const itemData = `${item.name.toUpperCase()}`
-        console.log(itemData.indexOf(textData) > -1)
+        // console.log(itemData.indexOf(textData) > -1)
         return itemData.indexOf(textData) > -1
       })
-      console.log(newData)
+      // console.log(newData)
 
       this.setState({
         data: newData,
