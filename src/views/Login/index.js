@@ -4,7 +4,7 @@ import * as Google from 'expo-google-app-auth'
 import { Container, Content, Grid, Item, Button, Text } from 'native-base'
 
 // React Native Elements
-import { Input, Icon } from 'react-native-elements'
+import { Input, Icon, SocialIcon } from 'react-native-elements'
 
 import style from './style'
 import enviroment from '../../../enviroment'
@@ -13,7 +13,6 @@ import { ACCESS_TOKEN, USER_INFO, GOOGLE_SUCCESS_MESSAGE, HOME, REGISTER } from 
 
 import aut from '../../utils/aut'
 
-const GOOGLE_IMAGE = require('../../../assets/google-icon.png')
 const LOGO_OFICIAL = require('../../../assets/onmyway-logo.png')
 
 const {
@@ -26,10 +25,11 @@ const {
 export default function Login ({ navigation }) {
   const [email, onChangeEmail] = React.useState('')
   const [password, onChangePassword] = React.useState('')
-
   const [hiddePassword, setHiddePassword] = useState(true)
+  const [isLoginLoading, setIsLoginLoading] = useState(false)
 
   const login = async () => {
+    setIsLoginLoading(true)
     try {
       const response = await fetch(
         `https://onmyway69.herokuapp.com/api/auth/login?username=${email}&password=${password}`, {
@@ -48,22 +48,27 @@ export default function Login ({ navigation }) {
         const tokenResult = await saveItem(ACCESS_TOKEN, accessToken)
 
         if (userResult && tokenResult) {
+          setIsLoginLoading(false)
           navigation.navigate(HOME)
         } else {
+          setIsLoginLoading(false)
           alert('Error al iniciar sesión')
         }
       } else {
         alert(responseJson)
+        setIsLoginLoading(false)
         return false
       }
       return responseJson
     } catch (error) {
       console.error(error)
+      setIsLoginLoading(false)
       return false
     }
   }
 
   const handleLoginPress = async () => {
+    setIsLoginLoading(true)
     try {
       const { user, accessToken, type } = await Google.logInAsync({
         iosClientId,
@@ -83,8 +88,13 @@ export default function Login ({ navigation }) {
           // aut.register(name, email, tokenResult, tokenResult);
           // Le mando el tokenResult por que no tengo acceso a la contraseña de google
 
-          aut.registerWithoutMessages(name, email, '12345678', '12345678', navigation)
+          const isSuccess = await aut.registerWithoutMessages(name, email, '12345678', '12345678', navigation)
+          if (isSuccess) {
+            setIsLoginLoading(false)
+            navigation.navigate(HOME)
+          }
         } else {
+          setIsLoginLoading(false)
           alert('Error al iniciar sesión')
         }
       }
@@ -134,22 +144,17 @@ export default function Login ({ navigation }) {
           >
             <Text>LOG IN</Text>
           </Button>
-          {/* <Text style={style.redirecURLText}>Did you forget your password?</Text> */}
-          <Item style={{ marginTop: 30 }}>
-            <Text>Login with</Text>
-          </Item>
 
-          <Button
-            style={style.googleBtn} light
+          <SocialIcon
+            title='Sign In With Google'
+            button
+            type='google'
             onPress={handleLoginPress}
-          >
-            <Image source={GOOGLE_IMAGE} style={style.googleIcon} />
-          </Button>
-          {/* <Button style={style.facebookBtn} light
-                        onPress={handleLoginFacebookPress}
-                        <Image source={FACEBOOK_IMAGE} style={style.googleIcon} />
-                    </Button> */}
+            style={{ padding: 16, marginTop: 32 }}
+            loading={isLoginLoading}
+          />
         </Grid>
+
         <Item style={{ borderBottomWidth: 0, flexDirection: 'column', marginBottom: 16 }}>
           <Text style={style.labelQuestion}>¿Do not you have an account yet?</Text>
           <Button
