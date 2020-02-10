@@ -10,6 +10,7 @@ export const MAPS = 'Maps'
 // Routes Events
 export const EVENT = 'Event'
 export const CREATE_EVENT = 'CreateEvent'
+export const DETAIL_EVENT = 'DetailEvent'
 
 // Routes Groups
 export const GROUPS = 'Groups'

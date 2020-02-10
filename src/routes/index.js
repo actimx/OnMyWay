@@ -13,6 +13,7 @@ import {
   SEARCH_GROUP,
   EVENT,
   CREATE_EVENT,
+  DETAIL_EVENT,
   MAPS,
   PRIMARY
 } from '../consts'
@@ -28,10 +29,12 @@ import SearchGroup from '../views/Groups/SearchGroup'
 import Register from '../views/Register'
 import Event from '../views/Events'
 import CreateEvent from '../views/Events/CreateEvent'
+import DetailEvent from '../views/Events/DetailEvent'
 import Maps from '../views/Maps'
 
 const AppLoading = createStackNavigator({
   [LOADING_PAGE]: LoadingPage
+  // [DETAIL_EVENT]: DetailEvent
 }, {
   headerMode: 'none'
 })
@@ -50,6 +53,7 @@ const AppNavigator = createStackNavigator({
   [SEARCH_GROUP]: SearchGroup,
   [EVENT]: Event,
   [CREATE_EVENT]: CreateEvent,
+  [DETAIL_EVENT]: DetailEvent,
   [MAPS]: Maps
 }, {
   initialRouteName: 'Home',

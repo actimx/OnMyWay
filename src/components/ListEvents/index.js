@@ -3,15 +3,21 @@ import { withNavigation } from 'react-navigation'
 import { FlatList } from 'react-native'
 import { ListItem, SearchBar } from 'react-native-elements'
 import { useSelector } from 'react-redux'
+import { DETAIL_EVENT } from "../../consts";
 
 const keyExtractor = (item) => item.id.toString()
 
 const renderItem = ({ item }) => (
+  
   <ListItem
     title={item.details}
     subtitle={item.id.toString()}
     bottomDivider
     chevron
+    onPress={() => {
+      console.log("id: ", item.id)
+      // navigation.navigate(DETAIL_EVENT)
+    }}
   />
 )
 
